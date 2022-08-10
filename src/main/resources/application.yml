@@ -1,0 +1,20 @@
+spring.rabbitmq:
+  username: rabbitmq
+  password: rabbitmq
+
+rabbitmq:
+  exchangeName: documents
+  pdf-consumer:
+    routingKey: convert.pdf
+    queueName: convert.pdf.queue
+  doc-consumer:
+    routingKey: convert.doc
+    queueName: convert.doc.queue
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/learn-oauth
+          jwk-set-uri: http://localhost:8081/realms/learn-oauth/protocol/openid-connect/certs

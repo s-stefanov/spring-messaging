@@ -1,0 +1,26 @@
+version: 3.x
+
+services:
+  rabbit:
+    image: "arm64v8/rabbitmq:3-management"
+    hostname: "rabbit"
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+
+  keycloak-dev:
+    image: "quay.io/keycloak/keycloak:19.0.1"
+    hostname: "keycloak"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8081:8080"
+    command:
+      - "start-dev"
